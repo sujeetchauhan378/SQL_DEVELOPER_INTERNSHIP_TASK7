@@ -1,0 +1,51 @@
+
+##Interview Questions & Answers – SQL Views
+
+1. What is a view?
+A view is a virtual table in SQL that is based on the result of a query. It does not store data itself but retrieves data from underlying tables when accessed.
+
+2. Can we update data through a view?
+
+Yes, but only if:
+The view is based on a single table.
+It does not contain aggregations, DISTINCT, GROUP BY, UNION, or JOIN.
+The database allows updates through that view.
+
+3. What is a materialized view?
+A materialized view stores the query result physically. It can be refreshed manually or automatically and is used to improve performance for frequently executed queries.
+
+5. How to drop a view?
+DROP VIEW view_name;
+
+6. Why use views?
+
+Simplify complex SQL queries
+Provide data abstraction
+Enhance security by restricting access to certain columns/rows
+Maintain reusable SQL logic
+
+7. Can we create indexed views?
+
+Yes, in some databases (like SQL Server) you can create indexed views for better performance.
+In MySQL, views cannot have indexes directly.
+
+8. How to secure data using views?
+
+Grant access to the view instead of the base table, exposing only necessary columns or filtered rows.
+
+9. What are limitations of views?
+
+Cannot always be updated
+Performance can be slower for complex queries
+Depends on underlying table structure (if table changes, view might break)
+
+10. How does WITH CHECK OPTION work?
+
+It ensures that all INSERT or UPDATE operations through the view satisfy the view’s WHERE condition.
+Example: CREATE VIEW IT_Employees AS
+SELECT * FROM Employees
+WHERE department = 'IT'
+WITH CHECK OPTION;
+
+
+
