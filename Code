@@ -1,0 +1,44 @@
+-- Create the Employees table
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+-- Insert sample data
+INSERT INTO Employees VALUES
+(1, 'Alice', 'IT', 60000),
+(2, 'Bob', 'HR', 45000),
+(3, 'Charlie', 'Finance', 70000),
+(4, 'David', 'IT', 65000),
+(5, 'Eva', 'Finance', 75000);
+
+-- Create a View for IT department employees
+CREATE VIEW IT_Employees AS
+SELECT emp_id, emp_name, salary
+FROM Employees
+WHERE department = 'IT';
+
+-- Select data from the view
+SELECT * FROM IT_Employees;
+
+-- Update data through the view (if allowed by database rules)
+UPDATE IT_Employees
+SET salary = 70000
+WHERE emp_id = 1;
+
+-- Create a View with WITH CHECK OPTION to enforce the condition
+CREATE VIEW IT_Employees_Check AS
+SELECT emp_id, emp_name, salary
+FROM Employees
+WHERE department = 'IT'
+WITH CHECK OPTION;
+
+-- Drop a view
+DROP VIEW IT_Employees;
+
+-- Create a Materialized View (example syntax for databases that support it, e.g., PostgreSQL/Oracle)
+-- In MySQL, you would simulate materialized views using a table + scheduled refresh.
+-- CREATE MATERIALIZED VIEW mv_IT_Employees AS
+-- SELECT emp_id, emp_name, salary FROM Employees WHERE department = 'IT';
